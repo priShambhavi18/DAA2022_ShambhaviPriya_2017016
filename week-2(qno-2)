@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int binarySearch(vector<int> &arr, int key)
+{
+    int s = 0, mid;
+    int e = arr.size() - 1;
+    mid = s + (e - s) / 2;
+    while (s <= e)
+    {
+        if (arr[mid] == key)
+        {
+            return mid;
+        }
+        else if (key > arr[mid])
+        {
+            s = mid + 1;
+        }
+        else
+        {
+            e = mid - 1;
+        }
+        mid = s + (e - s) / 2;
+    }
+    return -1;
+}
+int main()
+{
+    vector<int> arr;
+    int size, element, target, q, flag = 0;
+    cout << "Enter the size of the array:";
+    cin >> size;
+    cout << "Enter the elements of the array:";
+    for (int i = 0; i < size; i++)
+    {
+        cin >> element;
+        arr.push_back(element);
+    }
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = i + 1; j < size; j++)
+        {
+            q = arr[i] + arr[j];
+            int m = binarySearch(arr, q);
+            if (m != -1)
+            {
+                cout << i << " " << j << " " << m << endl;
+                flag = 1;
+            }
+        }
+    }
+    if (flag == 0)
+    {
+        cout << "No sequence found" << endl;
+    }
+}
