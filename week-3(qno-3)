@@ -1,0 +1,58 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+vector<int> bubble_sort(vector<int> &ans)
+{
+    int j = 0;
+    while (j < ans.size())
+    {
+        for (int i = 1; i < ans.size(); i++)
+        {
+            if (ans[i - 1] > ans[i])
+            {
+                swap(ans[i], ans[i - 1]);
+            }
+        }
+        j++;
+    }
+    return ans;
+}
+int main()
+{
+    int n, flag = 0;
+    cout << "Enter the size of the vector: ";
+    cin >> n;
+    int element;
+    vector<int> arr;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Enter the element: ";
+        cin >> element;
+        arr.push_back(element);
+    }
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    vector<int> ans1 = bubble_sort(arr);
+    for (int i = 0; i < ans1.size(); i++)
+    {
+        cout << ans1[i] << " ";
+    }
+    for (int j = 1; j < ans1.size(); j++)
+    {
+        if (ans1[j] == ans1[j - 1])
+        {
+            flag = 1;
+        }
+    }
+    if (flag == 1)
+    {
+        cout << "The given array contains duplicate elemnet";
+    }
+    else
+    {
+        cout << "The given array does not contains duplicate elemnet";
+    }
+}
