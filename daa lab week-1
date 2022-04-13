@@ -1,0 +1,72 @@
+#include<stdio.h>
+#define MAX 100
+void findmaxmin(int arr[],int size)
+{
+    int max=arr[0];
+    int min=arr[0];
+    for(int j=1; j<size; j++)
+    {
+        if(arr[j]>max)
+        {
+            max=arr[j];
+        }
+        if(arr[j]<min)
+        {
+            min=arr[j];
+        }
+    }
+    printf("The maximum element is: %d\n",max);
+    printf("The minimum element is: %d",min);
+}
+int search(int arr[],int size,int key)
+{
+    for(int i=0; i<size; i++)
+    {
+        if(arr[i]==key)
+        {
+            return 1;
+        }
+    }
+    return -1;
+}
+int main()
+{
+    int size,key,element,ch,choice=1;
+    int arr[MAX];
+    printf("Enter the size of the array: ");
+    scanf("%d",&size);
+    printf("Enter the element: ");
+    for(int i=0; i<size; i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    while(choice)
+    {
+        printf("Enter 1 to find min and max element and 2 to search for the element: ");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+        case 1:
+            findmaxmin(arr,size);
+            break;
+        case 2:
+
+            printf("Enter the key which you want to search: ");
+            scanf("%d",&key);
+            element=search(arr,size,key);
+            if(element==1)
+            {
+                printf("The element is found.");
+            }
+            else
+            {
+                printf("The element is not found.");
+            }
+        }
+        printf("\nPress 1 to continue and -1 to exit: ");
+        scanf("%d",&choice);
+        if(choice==-1)
+            break;
+
+    }
+}
