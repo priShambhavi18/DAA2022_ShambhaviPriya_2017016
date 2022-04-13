@@ -1,0 +1,90 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+ int first(const vector<int> &nums,int n,int target)
+    {
+        int left_most=-1;
+        int start=0;
+        int end=n-1;
+        int mid;
+        mid=start+(end-start)/2;
+        while(start<=end)
+        {
+            if(nums[mid]==target)
+            {
+                left_most=mid;
+                end=mid-1;  
+            }
+            else if(target>nums[mid])
+            {
+                start=mid+1;
+            }
+            else
+            {
+                end=mid-1;
+            }
+            mid=(start+end)/2;
+        }
+        return left_most;
+    }
+    
+      int second(const vector<int> &nums,int n,int target)
+      {
+        int right_most=-1;
+        int start=0;
+        int end=n-1;
+        int mid;
+        mid=start+(end-start)/2;
+        while(start<=end)
+        {
+            if(nums[mid]==target)
+            {
+                right_most=mid;
+                start=mid+1;  
+            }
+            else if(target>nums[mid])
+            {
+                start=mid+1;
+            }
+            else
+            {
+                end=mid-1;
+            }
+            mid=(start+end)/2;
+        }
+        return right_most;
+    }
+
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> ans;
+        int p=first(nums,nums.size(),target);
+         int q=second(nums,nums.size(),target);
+        ans.push_back(p);
+        ans.push_back(q);
+        return ans;
+    }
+int main()
+{
+    vector<int> arr;
+    int size,element,target;
+    cout<<"Enter the size of the array:";
+    cin>>size;
+    cout<<"Enter the elements of the array:";
+    for(int i=0;i<size;i++)
+    {
+        cin>>element;
+        arr.push_back(element);
+    }
+    cout<<"Enter the key element: ";
+    cin>>target;
+    vector<int> ans;
+        int p=first(arr,arr.size(),target);
+        int q=second(arr,arr.size(),target);
+        ans.push_back(p);
+        ans.push_back(q);
+        if(ans.size()==0)
+        {
+            cout<<"Not present"<<endl;
+        }
+       cout<<q-p+1; 
+}
