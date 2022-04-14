@@ -1,0 +1,66 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int partition(vector<int> &arr, int s, int e)
+{
+    int cnt = 0;
+    int pivot = arr[s];
+    for (int j = s + 1; j <= e; j++)
+    {
+        if (arr[j] <= pivot)
+        {
+            cnt++;
+        }
+    }
+    int pivotIndex = s + cnt;
+    swap(arr[s], arr[pivotIndex]);
+    int k = s;
+    int m = e;
+    while (k < pivotIndex && m > pivotIndex)
+    {
+        while (arr[k] < pivot)
+        {
+            k++;
+        }
+        while (arr[m] > pivot)
+        {
+            m--;
+        }
+        if (k < pivotIndex && m > pivotIndex)
+        {
+            swap(arr[k++], arr[m--]);
+        }
+    }
+    return pivotIndex;
+}
+void quickSort(vector<int> &arr, int s, int e)
+{
+    if (s >= e)
+    {
+        return;
+    }
+    int p = partition(arr, s, e);
+    quickSort(arr, s, p - 1);
+    quickSort(arr, p + 1, e);
+}
+
+int main()
+{
+    int size, element;
+    vector<int> arr;
+    cout << "Enter the size of the vector: " << endl;
+    cin >> size;
+    cout << "Enter the elements of array: " << endl;
+    for (int i = 0; i < size; i++)
+    {
+        cin >> element;
+        arr.push_back(element);
+    }
+    quickSort(arr, 0, arr.size() - 1);
+    cout << "Sorted elements: " << endl;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
