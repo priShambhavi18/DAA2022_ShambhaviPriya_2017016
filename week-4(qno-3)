@@ -1,0 +1,26 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int size, element, k;
+    vector<int> arr;
+    set<int> st;
+    cout << "Enter the size of the vector: " << endl;
+    cin >> size;
+    cout << "Enter the elements of array: " << endl;
+    for (int i = 0; i < size; i++)
+    {
+        cin >> element;
+        arr.push_back(element);
+    }
+    cout << "Enter the kth vaue: " << endl;
+    cin >> k;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        st.insert(arr[i]);
+    }
+    set<int>::iterator it = st.begin();
+    advance(it, k - 1);
+    cout << *it << endl;
+}
